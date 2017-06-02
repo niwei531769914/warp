@@ -32,7 +32,7 @@ class GoodsItem extends Component {
         return (
             <a href="javascript:void (0)">
                 <img src={ this.props.GoodsItem.Img }/>
-                <span>{this.props.Name}</span>
+                <span>{this.props.Name}2222</span>
             </a>
         )
     }
