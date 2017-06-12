@@ -1,22 +1,17 @@
 
 
 //页面rem
-!(function(doc, win) {
-    var docEle = doc.documentElement, //获取html元素
-        event = "onorientationchange" in window ? "orientationchange" : "resize", //判断是屏幕旋转还是resize;
-        fn = function() {
-            var width = docEle.clientWidth;
-            width && (docEle.style.fontSize = 100 * (width / 750) + "px"); //设置html的fontSize，随着event的改变而改变。
+(function(doc, win) {
+    let docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function() {
+            let clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
         };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
 
-    win.addEventListener(event, fn, false);
-    doc.addEventListener("DOMContentLoaded", fn, false);
 
-}(document, window));
-
-
-// window.onload = function() {
-//     //淡入
-//     $("body").css("visibility", "visible");
-//     $("body").addClass("jbox");
-// };

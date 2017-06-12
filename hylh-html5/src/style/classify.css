@@ -6,7 +6,7 @@
 .classify-city{ width: 100%; height: auto; float: left; z-index: -1 }
 .classify-city a{ width: 3.3rem; height: auto; margin-left: .3rem; float: left; font-size: .26rem; margin-top: .3rem}
 .classify-city a img{ width: 100%; height: auto; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; display: block}
-.classify-city a span{ margin-top: .2rem; display: block; margin-left: .14rem}
+.classify-city a span{ margin-top: .2rem; display: block; margin-left: .14rem; text-align: center}
 /*分类*/
 .classify-type{ width: 100%; height: auto; float: left; z-index: -1}
 .classify-type .classify-type-list{ width: 1.6rem; height: 100%; float: left; border-right: .02rem solid #efefef; font-size: .24rem; overflow-y: auto}

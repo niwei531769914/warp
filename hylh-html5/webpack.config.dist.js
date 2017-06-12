@@ -18,10 +18,10 @@ module.exports = {
     app : './src/App.jsx'
        },
     output: {
-        //publicPath: 'dist', //编译好的文件，在服务器的路径,域名会自动添加到前面
+        //publicPath: 'dist/', //编译好的文件，在服务器的路径,域名会自动添加到前面
         path: BUILD_PATH, //编译到当前目录
-        filename: 'scripts/[name].js', //编译后的文件名字
-        chunkFilename: '/scripts/[name].min.js',
+        filename: 'scripts/[name].[chunkhash:5].js', //编译后的文件名字
+        chunkFilename: '/scripts/[name].[chunkhash:5].min.js',//chunkhash是根据具体模块文件的内容计算所得的hash值，所以某个文件的改动只会影响它本身的hash指纹，不会影响其他文件。
     },
     module: loaders,
 
