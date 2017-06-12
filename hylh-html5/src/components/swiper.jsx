@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import $ from 'jquery';
 
 let Swiper = require('../lib/swiper.min');
 
@@ -13,8 +12,7 @@ class ImageSwiper extends Component {
     }
 
     componentDidMount() {
-         console.log($(window).width());
-         console.log($('.nwrapper').width());
+
         new Swiper('.more_bottom .swiper-container', {
             loop: true,
             pagination: '.swiper-pagination',
@@ -22,7 +20,6 @@ class ImageSwiper extends Component {
             autoplay: 2000,
             autoplayDisableOnInteraction: false,
         });
-
 
     }
 
