@@ -20,7 +20,7 @@ require('./style/common.css');
 
 require('./style/header/header.css');
 
-
+import ImageSwiper from './components/swiper';
 
 
 if ('addEventListener' in document) {
@@ -33,30 +33,15 @@ store.subscribe(() => { //监听state变化
     console.log(store.getState())
 });
 
-// class App extends Component{
-//     constructor(props){
-//         super(props);
-//
-//     }
-//
-//     render(){
-//         const { data } = this.props;
-//         return (
-//             <div>
-//                 <Header name = "商品分类"/>
-//                 <Goods/>
-//             </div>
-//         );
-//     }
-// }
 
 // print store
-//console.log(store.getState());
+
 //首先，我们需要获取从之前安装好的 react-redux 提供的 Provider，并且在渲染之前将根组件包装进 <Provider>。
 let app = document.getElementById('app');
 render(
     <Provider  store={store} >
-        {router}
+        {/*{router}*/}
+        <ImageSwiper/>
     </Provider>,
     app
 );
