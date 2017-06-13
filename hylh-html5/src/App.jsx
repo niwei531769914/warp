@@ -1,10 +1,8 @@
 import React , { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 
-// import { createStore , getState } from 'redux';
 import { Provide } from 'react-redux';
 
-// import todoApp from './redux/reducer/index'
 import store from './redux/store/index';
 
 
@@ -22,7 +20,6 @@ require('./style/header.css');
 require('./style/top.css');
 require('./style/download.css');
 
-import ImageSwiper from './components/swiper';
 
 
 if ('addEventListener' in document) {
@@ -42,8 +39,7 @@ store.subscribe(() => { //监听state变化
 let app = document.getElementById('app');
 render(
     <Provider  store={store} >
-        {/*{router}*/}
-        <ImageSwiper/>
+        {router}
     </Provider>,
     app
 );

@@ -1,12 +1,9 @@
-
 import React, { Component } from 'react';
 
 import api from '../config/api';
 import $ from 'jquery';
 
 import { Link } from 'react-router';
-
-import Country from '../components/country';
 
 require('../style/classify.css');
 
@@ -64,7 +61,6 @@ class Classify extends Component{
                     <a href="javascript:void (0)" >国家</a>
                 </div>
                 <div className="classify-type">22222</div>
-                <Country country = { this.state.countryList } />
             </div>
         )
     }
@@ -72,4 +68,3 @@ class Classify extends Component{
 }
 
 export default Classify;
-

@@ -6,22 +6,16 @@ import {Router, Route, Redirect, IndexRoute, browersHistory, hashHistory} from '
 //动画效果 very important
 import {RouteTransition} from 'react-router-transition';
 
-import Classify from '../containers/classify';
+import  Classify from '../containers/classify';
+import  Login from '../components/login';
 
 class Roots extends Component {
 
     render() {
         return (
-            <RouteTransition
-                className="transition-wrapper"
-                pathname={this.props.location.pathname}
-                atEnter={{ translateX: 100 }}
-                atLeave={{ translateX: -100 }}
-                atActive={{ translateX: 0 }}
-                mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
-            >
+            <div>
                 {this.props.children}
-            </RouteTransition>
+            </div>
         )
     }
 }
@@ -38,13 +32,21 @@ const goodsItems = (location, cb) => {
     }, 'goodsItems')
 };
 
+//注册
+const register= (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/register').default)
+    }, 'register')
+};
+
 
 const RouteConfig = (
     <Router history={hashHistory}>
         <Route path="/" component={Roots}>
             //定向"/"路由
-            <IndexRoute component={Classify}/>//首页
+            <IndexRoute component={Login}/>//首页
             <Route path="goodsItems" getComponent={goodsItems}/>
+            <Route path="register" getComponent={register}/>
             <Redirect from='*' to='/'/>
         </Route>
     </Router>
