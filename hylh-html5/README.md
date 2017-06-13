@@ -9,8 +9,7 @@ npm run start   //热替换
 npm run dist //打包生产环境
 
 
-
-├── dist                                      // 项目打包路径
+├── dist                                        // 项目打包路径
 ├── elm                                         // 上线项目文件，放在服务器即可正常访问
 ├── src                                         // 源码目录
 │   ├── components                              // UI组件

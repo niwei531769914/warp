@@ -3,8 +3,6 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
-//清除文件夹dist
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 //定义地址
 const ROOT_PATH = path.resolve(__dirname);
@@ -47,11 +45,6 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        }),
-
-        new CleanWebpackPlugin(['dist'], {
-            //清除dist文件 root为根目录下
-            root: process.cwd()
         }),
     ],
 

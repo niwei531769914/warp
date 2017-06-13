@@ -23,7 +23,7 @@ module.exports = {
         }, {
             test: /\.(png|jpg|gif)$/,
             exclude: /^node_modules$/,
-            loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+            loader: 'url-loader?limit=40000&name=images/[name]_[hash:8].[ext]',
             //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图
         },  {
             test: /\.jsx$/,

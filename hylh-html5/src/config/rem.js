@@ -3,7 +3,7 @@
     const docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
         recalc = () => {
-            let clientWidth = docEl.clientWidth;
+            let clientWidth = doc.body.clientWidth;
             if (!clientWidth) return;
             docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
         };

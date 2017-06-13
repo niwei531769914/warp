@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+import Header from '../components/header/header';
+import Top from '../components/footer/top';
+import Download from '../components/download/download';
 
 let Swiper = require('../lib/swiper.min');
 
@@ -25,16 +28,21 @@ class ImageSwiper extends Component {
 
     render() {
         return (
-            <div className="more_bottom">
-                <div className="swiper-container">
-                    <div className="swiper-wrapper">
-                        <div className="lightbox swiper-slide">1</div>
-                        <div className="lightbox swiper-slide">2</div>
-                        <div className="lightbox swiper-slide">3</div>
-                        <div className="lightbox swiper-slide">4</div>
+            <div>
+                <Download/>
+                <Header name = "限时折扣"/>
+                <div className="more_bottom">
+                    <div className="swiper-container">
+                        <div className="swiper-wrapper">
+                            <div className="lightbox swiper-slide">1</div>
+                            <div className="lightbox swiper-slide">2</div>
+                            <div className="lightbox swiper-slide">3</div>
+                            <div className="lightbox swiper-slide">4</div>
+                        </div>
+                        <div className="swiper-pagination"></div>
                     </div>
-                    <div className="swiper-pagination"></div>
                 </div>
+                <Top/>
             </div>
         )
     }

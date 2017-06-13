@@ -18,7 +18,9 @@ import Provider from "react-redux/src/components/Provider";
 
 require('./style/common.css');
 
-require('./style/header/header.css');
+require('./style/header.css');
+require('./style/top.css');
+require('./style/download.css');
 
 import ImageSwiper from './components/swiper';
 
