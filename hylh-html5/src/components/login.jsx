@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 
-import { Link } from 'react-router';
+import { Link,hashHistory } from 'react-router';
 
 import $ from 'jquery';
 
@@ -262,6 +262,18 @@ class Login extends Component {
         },1000);
     }
 
+    //页面跳转传参数
+    handleClick(){
+        hashHistory.push({
+            pathname: '/register',
+            query: {
+                title:2,
+                time:3,
+                text:4
+            },
+        })
+    }
+
     render() {
         return (
             <div>
@@ -306,7 +318,7 @@ class Login extends Component {
                         </div>
 
                         <div className="item item-res">
-                            <Link to="/register"><a className="btn-res btn-disabled" href="javascript:void (0)">注册</a></Link>
+                            <a onClick={this.handleClick.bind(this)} className="btn-res btn-disabled" href="javascript:void (0)">注册</a>
                         </div>
 
                         <div className="item item-login-option">

@@ -10,6 +10,9 @@ class Register extends Component {
     constructor(props) {
         super(props);
 
+        //获取url后的query
+        console.log(this.props.location.query);
+
         this.state = {
             userNameLength:0,
             passwordLength:0,

@@ -6,7 +6,7 @@ import {Router, Route, Redirect, IndexRoute, browersHistory, hashHistory} from '
 //动画效果 very important
 import {RouteTransition} from 'react-router-transition';
 
-import  Classify from '../containers/classify';
+//import  Index from '../containers/index';
 import  Login from '../components/login';
 
 class Roots extends Component {
