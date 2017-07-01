@@ -6,8 +6,9 @@ import {Router, Route, Redirect, IndexRoute, browersHistory, hashHistory} from '
 //动画效果 very important
 import {RouteTransition} from 'react-router-transition';
 
-//import  Index from '../containers/index';
-import  Login from '../components/login';
+import  Index from '../containers/index';
+import Area from '../containers/area';
+import Coupon from '../containers/coupon';
 
 class Roots extends Component {
 
@@ -39,14 +40,22 @@ const register= (location, cb) => {
     }, 'register')
 };
 
+//登录
+const login= (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/login').default)
+    }, 'login')
+};
+
 
 const RouteConfig = (
     <Router history={hashHistory}>
         <Route path="/" component={Roots}>
             //定向"/"路由
-            <IndexRoute component={Login}/>//首页
+            <IndexRoute component={Area}/>//首页
             <Route path="goodsItems" getComponent={goodsItems}/>
             <Route path="register" getComponent={register}/>
+            <Route path="login" getComponent={login}/>
             <Redirect from='*' to='/'/>
         </Route>
     </Router>
