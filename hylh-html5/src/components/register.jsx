@@ -6,6 +6,7 @@ import $ from 'jquery';
 
 import Api from '../config/api';
 
+
 class Register extends Component {
     constructor(props) {
         super(props);

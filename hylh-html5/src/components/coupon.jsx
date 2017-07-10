@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import Img from '../images/ic_product.png';
 
 class ListItem extends Component {
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
-        this.props = {
-            coupon: []
-        }
-    }
+		this.props = {
+			coupon: []
+		}
+	}
 
-    render() {
-        const {coupon} = this.props;
-        return ( <div>
+	render() {
+		const {
+			coupon
+		} = this.props;
+		return(<div>
                 {
                     coupon.map((item, index) => {
                         return (
@@ -38,12 +40,9 @@ class ListItem extends Component {
                         )
                     })
                 }
-            </div>
-        )
-
-    }
+            </div>)
+	}
 
 }
-
 
 export default ListItem;
