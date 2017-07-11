@@ -7,8 +7,6 @@ import {Router, Route, Redirect, IndexRoute, browersHistory, hashHistory} from '
 import {RouteTransition} from 'react-router-transition';
 
 import  Index from '../containers/index';
-import Area from '../containers/area';
-import Coupon from '../containers/coupon';
 
 class Roots extends Component {
 
@@ -49,10 +47,10 @@ const login= (location, cb) => {
 
 
 const RouteConfig = (
-    <Router history={hashHistory}>
+    <Router history={ hashHistory }>
         <Route path="/" component={Roots}>
             //定向"/"路由
-            <IndexRoute component={Area}/>//首页
+            <IndexRoute component={Index}/>//首页
             <Route path="goodsItems" getComponent={goodsItems}/>
             <Route path="register" getComponent={register}/>
             <Route path="login" getComponent={login}/>

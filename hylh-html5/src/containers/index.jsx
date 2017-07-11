@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 
 import APi from '../config/api';
-import {iScroll} from '../lib/iscroll';
+import { iScroll } from '../lib/iscroll';
 
 import '../style/index.css';
 
@@ -35,24 +35,24 @@ class Index extends Component {
                 else {
                     alert(data.msg);
                 }
-
             })
             .catch(error => {
                 console.log(error);
             });
 
-
         function loaded() {
-            myscroll = new iScroll("wrapper", {
-                hScroll: true,
-                vScroll: false,
-                bounce: true,
-                hScrollbar: false,
-                hideScrollbar: true
-            });
+            setTimeout(function () {
+                myscroll = new iScroll("wrapper", {
+                    hScroll:true,
+                    vScroll:false,
+                    bounce: true,
+                    hScrollbar: false,
+                    hideScrollbar: true
+                });
+            },100);
         }
 
-        window.addEventListener("DOMContentLoaded", loaded, false);
+        window.addEventListener("load", loaded, false);
 
     }
 
@@ -87,7 +87,6 @@ class Index extends Component {
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         )
