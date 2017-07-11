@@ -19,6 +19,7 @@ class Index extends Component {
     componentDidMount() {
         let myscroll;
         let that = this;
+
         let params = {
             url: 'http://mobile.vision-world.cn:8080/mobile-web-user/ws/mobile/v1/index/getTitle',
             method: 'post',
@@ -35,13 +36,8 @@ class Index extends Component {
                 else {
                     alert(data.msg);
                 }
-            })
-            .catch(error => {
-                console.log(error);
-            });
 
-        function loaded() {
-            setTimeout(function () {
+                //iscroll init
                 myscroll = new iScroll("wrapper", {
                     hScroll:true,
                     vScroll:false,
@@ -49,10 +45,11 @@ class Index extends Component {
                     hScrollbar: false,
                     hideScrollbar: true
                 });
-            },100);
-        }
 
-        window.addEventListener("load", loaded, false);
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
     }
 
