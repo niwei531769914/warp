@@ -54,12 +54,10 @@ class GoodsList extends Component {
                     {
                         this.state.GoodsList.map((item, index) => {
                             if (index == 0) {
-                                return <a data-catId = { item.catId} onClick={this.handleClick.bind(this, index)} key={index} href="javascript:;"
-                                          className="list-active">{item.catName}</a>;
+                                return <a data-catId = { item.catId} onClick={this.handleClick.bind(this, index)} key={index} href="javascript:;" className="list-active">{item.catName}</a>;
                             }
                             else {
-                                return <a data-catId = { item.catId} onClick={this.handleClick.bind(this, index)} key={index}
-                                          href="javascript:;">{item.catName}</a>;
+                                return <a data-catId = { item.catId} onClick={this.handleClick.bind(this, index)} key={index} href="javascript:;">{item.catName}</a>;
                             }
                         }, this)
                     }

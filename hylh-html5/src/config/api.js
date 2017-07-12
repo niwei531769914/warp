@@ -8,8 +8,8 @@ import fetch from 'isomorphic-fetch';
  * @return 返回Promise
  */
 
-let common_url = 'http://mobile.vision-world.cn:8080'; //正式服务器地址
-let token = '';
+let production_url = 'http://mobile.vision-world.cn:8080'; //正式服务器地址
+let env_url = ''; //测试环境
 
 let api = function(params) {
 

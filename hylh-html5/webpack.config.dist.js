@@ -13,6 +13,7 @@ const BUILD_PATH = path.resolve(ROOT_PATH, 'dist'); //发布文件所存放的�
 const loaders = require('./webpack.loaders');
 
 module.exports = {
+
 	entry: {
 		app: './src/App.jsx'
 	},
@@ -62,4 +63,4 @@ module.exports = {
 	resolve: {
 		extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'] //后缀名自动补全
 	}
-};
+}

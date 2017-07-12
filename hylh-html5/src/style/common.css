@@ -33,7 +33,7 @@ textarea.fixAndroidKeyboard:focus, input.fixAKeyboard:focus {-webkit-tap-highlig
 
 html, body {line-height: 1;width: 100%;font-family: "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", "微软雅黑", Tahoma, Arial, STHeiti, sans-serif;-webkit-text-size-adjust: none;  }
 
-.nwrapper{width: 100%;position: relative;max-width: 750px;min-width: 320px;overflow: hidden;margin: 0 auto;}
+.nwrapper{width: 100%; min-width: 320px; max-width: 750px; position: relative; margin: 0 auto;}
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: #fff;
