@@ -6,7 +6,7 @@ import {Router, Route, Redirect, IndexRoute, browersHistory, hashHistory} from '
 //动画效果 very important
 import {RouteTransition} from 'react-router-transition';
 
-import  Classify from '../containers/classify';
+//import  Classify from '../containers/classify';
 import  Login from '../components/login';
 
 class Roots extends Component {
@@ -38,6 +38,12 @@ const register= (location, cb) => {
         cb(null, require('../components/register').default)
     }, 'register')
 };
+//地址
+const address= (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/address').default)
+    }, 'address')
+};
 
 
 const RouteConfig = (
@@ -47,6 +53,7 @@ const RouteConfig = (
             <IndexRoute component={Login}/>//首页
             <Route path="goodsItems" getComponent={goodsItems}/>
             <Route path="register" getComponent={register}/>
+            <Route path="address" getComponent={address}/>
             <Redirect from='*' to='/'/>
         </Route>
     </Router>

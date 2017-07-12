@@ -1,6 +1,6 @@
 //login
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import { Link } from 'react-router';
 
@@ -11,260 +11,256 @@ import Api from '../config/api';
 import '../style/login.css';
 
 class Login extends Component {
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
-        this.state = {
-            loginBysms : false,
-            userNameLength:0,
-            passwordLength:0,
-            captchaLength:0
-        }
+		this.state = {
+			loginBysms: false,
+			userNameLength: 0,
+			passwordLength: 0,
+			captchaLength: 0
+		}
 
-    }
+	}
 
-    componentDidMount(){
+	componentDidMount() {
 
-        let that = this;
+		let that = this;
 
-        //init
-        this.bindEvent();
+		//init
+		this.bindEvent();
 
-        // login
-        $('.login-tab span').on('click',function () {
+		// login
+		$('.login-tab span').on('click', function() {
 
-            $('.login-tab span').removeClass('active');
-            $(this).addClass('active');
+			$('.login-tab span').removeClass('active');
+			$(this).addClass('active');
 
-            if($('.login-tab-sms').hasClass('active')){
-                that.setState({
-                    loginBysms: true
-                });
-                $('.item.item-password').hide();
-                $('.item.item-sms-captcha').show();
-                $('.btn-login').addClass('btn-disabled');
-                $('.txt-password').val("");
-            }
-            else {
-                that.setState({
-                   loginBysms: false
-                });
-                $('.item.item-password').show();
-                $('.item.item-sms-captcha').hide();
-                $('.btn-login').addClass('btn-disabled');
-                $('.txt-sms-captcha').val("");
-            }
-        })
+			if($('.login-tab-sms').hasClass('active')) {
+				that.setState({
+					loginBysms: true
+				});
+				$('.item.item-password').hide();
+				$('.item.item-sms-captcha').show();
+				$('.btn-login').addClass('btn-disabled');
+				$('.txt-password').val("");
+			} else {
+				that.setState({
+					loginBysms: false
+				});
+				$('.item.item-password').show();
+				$('.item.item-sms-captcha').hide();
+				$('.btn-login').addClass('btn-disabled');
+				$('.txt-sms-captcha').val("");
+			}
+		})
 
+	}
 
-    }
+	bindEvent() {
+		let that = this;
+		$('.txt-username').on('keyup', function() {
+			that.setState({
+				userNameLength: $(this).val().length
+			});
+			that.enableLogin();
+		});
 
-    bindEvent(){
-        let that = this;
-        $('.txt-username').on('keyup',function () {
-            that.setState({
-                userNameLength : $(this).val().length
-            });
-            that.enableLogin();
-        });
+		$('.txt-password').on('keyup', function() {
+			that.setState({
+				passwordLength: $(this).val().length
+			});
+			that.enableLogin();
+		});
 
-        $('.txt-password').on('keyup',function () {
-            that.setState({
-                passwordLength: $(this).val().length
-            });
-            that.enableLogin();
-        });
+		$('.txt-sms-captcha').on('keyup', function() {
+			that.setState({
+				captchaLength: $(this).val().length
+			});
+			that.enableLogin();
+		})
 
-        $('.txt-sms-captcha').on('keyup',function () {
-            that.setState({
-                captchaLength: $(this).val().length
-            });
-            that.enableLogin();
-        })
+	}
 
-    }
+	enableLogin() {
 
-    enableLogin(){
+		const {
+			loginBysms,
+			userNameLength,
+			passwordLength,
+			captchaLength
+		} = this.state;
 
-        const { loginBysms ,userNameLength, passwordLength, captchaLength } = this.state;
+		if(loginBysms) {
+			if(userNameLength > 0 && captchaLength > 0) {
+				$('.btn-login').removeClass('btn-disabled');
+			} else {
+				$('.btn-login').addClass('btn-disabled');
+			}
+		} else {
+			if(userNameLength > 0 && passwordLength > 0) {
+				$('.btn-login').removeClass('btn-disabled');
+			} else {
+				$('.btn-login').addClass('btn-disabled');
+			}
+		}
 
-        if(loginBysms){
-            if(userNameLength > 0 && captchaLength > 0 ){
-                $('.btn-login').removeClass('btn-disabled');
-            }
-            else {
-                $('.btn-login').addClass('btn-disabled');
-            }
-        }
-        else {
-            if(userNameLength > 0 && passwordLength > 0){
-                $('.btn-login').removeClass('btn-disabled');
-            }
-            else {
-                $('.btn-login').addClass('btn-disabled');
-            }
-        }
+	}
 
-    }
+	handleBack() {
+		alert(2);
+	}
 
+	//密码显示btn
+	handleOff(event) {
+		let element = event.target;
+		if($(element).hasClass('btn-on')) {
+			$(element).removeClass('btn-on');
+			$(element).prev().attr('type', 'password');
+		} else {
+			$(element).addClass('btn-on');
+			$(element).prev().attr('type', 'text');
+		}
+	}
 
-    handleBack(){
-        alert(2);
-    }
+	handleLogin(event) {
+		const {
+			loginBysms
+		} = this.state;
+		let element = event.target;
+		let that = this;
+		if($(element).hasClass('btn-disabled')) {
+			return false;
+		}
 
-    //密码显示btn
-    handleOff(event){
-        let element = event.target;
-        if($(element).hasClass('btn-on')){
-            $(element).removeClass('btn-on');
-            $(element).prev().attr('type','password');
-        }
-        else {
-            $(element).addClass('btn-on');
-            $(element).prev().attr('type','text');
-        }
-    }
+		let userName = $('.txt-username').val();
+		let passWord = $('.txt-password').val();
+		let captcha = $('.txt-sms-captcha').val();
 
-    handleLogin(event){
-        const { loginBysms } = this.state;
-        let element = event.target;
-        let that = this;
-        if($(element).hasClass('btn-disabled')){
-            return false;
-        }
+		if(userName == "") {
+			$('.error-msg').text("手机号码不能为空!").parent().css("display", "block");
+			return false;
+		}
 
-        let userName = $('.txt-username').val();
-        let passWord = $('.txt-password').val();
-        let captcha = $('.txt-sms-captcha').val();
+		//    如果是验证码登录走另一个分支
+		if(loginBysms) {
+			this.loginSms(userName, captcha);
+			return false;
+		}
 
-        if(userName == ""){
-            $('.error-msg').text("手机号码不能为空!").parent().css("display","block");
-            return false;
-        }
+		let params = {
+			url: 'http://121.196.208.98:28080/mobile-web-user/ws/mobile/v1/user/login',
+			method: 'post',
+			params: {
+				'phoneCode': userName,
+				'password': passWord,
+				'type': '0',
+				'origin': '5',
+				'phoneToken': ''
+			}
+		}
+		Api(params)
+			.then(data => {
+				if(data.code == 1) {
+					alert(data.response)
+				} else {
+					alert(data.msg);
+				}
+			})
+			.catch(error => {
+				alert(error);
+			})
 
-    //    如果是验证码登录走另一个分支
-        if(loginBysms){
-            this.loginSms(userName,captcha);
-            return false;
-        }
+	}
 
-        let params = {
-            url: 'http://121.196.208.98:28080/mobile-web-user/ws/mobile/v1/user/login',
-            method:'post',
-            params:{
-                'phoneCode':userName,
-                'password': passWord,
-                'type': '0',
-                'origin': '5',
-                'phoneToken': ''
-            }
-        }
-        Api(params)
-            .then( data => {
-                if(data.code == 1){
-                    alert(data.response)
-                }
-                else {
-                    alert(data.msg);
-                }
-            })
-            .catch( error => {
-                alert(error);
-            })
+	//验证码login
+	loginSms(userName, captcha) {
+		let that = this;
+		if(captcha == '') {
+			$('.error-msg').text('验证码不能为空!').parent().css('display', 'block');
+			return false;
+		}
 
-    }
+		let params = {
+			url: 'http://121.196.208.98:28080/mobile-web-user/ws/mobile/v1/user/login',
+			method: 'post',
+			params: {
+				'phoneCode': userName,
+				'identifyingcode': captcha,
+				'type': '1',
+				'origin': '5',
+				'phoneToken': ''
+			}
+		}
 
-    //验证码login
-    loginSms(userName,captcha){
-        let that = this;
-        if(captcha == ''){
-            $('.error-msg').text('验证码不能为空!').parent().css('display','block');
-            return false;
-        }
+		Api(params)
+			.then(data => {
+				if(data.code == 1) {
+					alert(data.response);
+				}
+			})
+			.catch(error => {
+				alert(error);
+			})
 
-        let params = {
-            url: 'http://121.196.208.98:28080/mobile-web-user/ws/mobile/v1/user/login',
-            method: 'post',
-            params: {
-                'phoneCode': userName,
-                'identifyingcode': captcha,
-                'type': '1',
-                'origin': '5',
-                'phoneToken': ''
-            }
-        }
+	}
 
-        Api(params)
-            .then(data => {
-                if(data.code == 1){
-                    alert(data.response);
-                }
-            })
-            .catch(error => {
-                alert(error);
-            })
+	//发送验证码
+	handleSmit(event) {
+		let that = this;
+		let element = event.target;
 
-    }
+		if($(element).hasClass('btn-retransmit-disabled')) {
+			return false;
+		}
+		let userName = $('.txt-username').val();
 
-    //发送验证码
-    handleSmit(event){
-        let that = this;
-        let element = event.target;
+		if(userName == "") {
+			$('.error-msg').text('手机号码不能为空').parent().css('display', 'block');
+			console.log(2);
+			return false;
+		}
 
-        if($(element).hasClass('btn-retransmit-disabled')){
-            return false;
-        }
-        let userName = $('.txt-username').val();
+		let params = {
+			url: 'http://121.196.208.98:28080/mobile-web-user/ws/mobile/v1/user/getIdentifyingCode',
+			method: 'post',
+			params: {
+				'phoneCode': userName
+			}
+		};
 
-        if(userName == "" ){
-            $('.error-msg').text('手机号码不能为空').parent().css('display','block');
-            console.log(2);
-            return false;
-        }
+		Api(params)
+			.then(function(data) {
+				if(data.code == 1) {
+					that.countdown(60);
+					$('.item-tips').css('display', 'none');
+				} else {
+					$('.error-msg').text(data.msg).css('display', 'block');
+				}
+			})
+			.catch(error => {
+				alert(error);
+			})
 
-        let params = {
-            url: 'http://121.196.208.98:28080/mobile-web-user/ws/mobile/v1/user/getIdentifyingCode',
-            method: 'post',
-            params: {
-                'phoneCode': userName
-            }
-        };
+	}
 
-        Api(params)
-            .then(function (data) {
-                if(data.code == 1){
-                    that.countdown(60);
-                    $('.item-tips').css('display','none');
-                }
-                else {
-                    $('.error-msg').text(data.msg).css('display','block');
-                }
-            })
-            .catch( error => {
-                alert(error);
-            })
+	//倒计时
+	countdown(time) {
+		let that = this;
+		setTimeout(() => {
+			if(time > 0) {
+				time--;
+				$('.btn-retransmit').text(time + 's').addClass('btn-retransmit-disabled');
+				that.countdown(time);
+			} else {
+				$('.btn-retransmit-disabled').text('获取验证码').removeClass('btn-retransmit-disabled');
+			}
+		}, 1000);
+	}
 
-
-    }
-
-    //倒计时
-    countdown(time){
-        let that = this;
-        setTimeout(() =>{
-            if(time > 0 ){
-                time--;
-                $('.btn-retransmit').text(time + 's').addClass('btn-retransmit-disabled');
-                that.countdown(time);
-            }
-            else {
-                $('.btn-retransmit-disabled').text('获取验证码').removeClass('btn-retransmit-disabled');
-            }
-        },1000);
-    }
-
-    render() {
-        return (
-            <div>
+	render() {
+		return(
+			<div>
                 <header className="header">
                     <a href="javascript:void (0)" className="back" onClick={this.handleBack.bind(this)}></a>
                     <div className="login-tab">
@@ -318,8 +314,8 @@ class Login extends Component {
                 </section>
             </div>
 
-        )
-    }
+		)
+	}
 
 }
 
