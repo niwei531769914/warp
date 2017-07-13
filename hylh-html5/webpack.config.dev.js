@@ -35,7 +35,7 @@ module.exports = {
             title: 'dist',
             inject: 'body'
         }),
-        new ExtractTextPlugin('style/[name].css'),
+        new ExtractTextPlugin('style/[name].[chunkhash:5].css'),
         //提取出来的样式和common.js会自动添加进发布模式的html文件中，原来的html没有
         // new webpack.optimize.CommonsChunkPlugin("common", "scripts/common.bundle.js"),
         new webpack.optimize.UglifyJsPlugin({

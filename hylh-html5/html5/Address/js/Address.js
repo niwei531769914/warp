@@ -7,7 +7,6 @@
 			var clientWidth = $(".nwrapper").width();
 			/*if (!clientWidth) return;*/
 			docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-
 		};
 	if(!doc.addEventListener) return;
 	win.addEventListener(resizeEvt, recalc, false);
