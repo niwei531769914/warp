@@ -124,7 +124,11 @@ class Login extends Component {
 	}
 
 	handleLogin(event) {
-		const { loginBysms } = this.state;
+
+		const {
+			loginBysms
+		} = this.state;
+
 		let element = event.target;
 		let that = this;
 		if($(element).hasClass('btn-disabled')) {
