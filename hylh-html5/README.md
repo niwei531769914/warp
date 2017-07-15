@@ -17,11 +17,11 @@ npm run dist //打包生产环境
 │   │   ├── footer                              // 底部公共组件
 │   │   └── header                              // 头部公共组件
 │   ├── config                                  // 基本配置
-│   ├── container                               // 容器组件
+│   ├── containers                               // 容器组件
 │   ├── images                                  // 公共图片
 │   ├── layouts                                 // 布局组件
 │   ├── lib                                     // 外部引入
-│   ├── router                                   
+│   ├── router                                  //页面路由配置
 │   ├── redux                                   // redux的状态管理
 │   │   ├── action                              // 配置actions
 │   │   ├── reducer                             // 配置reducer
@@ -31,7 +31,7 @@ npm run dist //打包生产环境
 │   │   ├── header                              // header样式
 │   │   ├── footer                              // footer样式
 │   │   ├── components                          // components样式
-│   ├── ApP.jsx                                 // 页面入口文件
+│   ├── App.jsx                                 // 页面入口文件
 │   ├── template                                // 页面模块入口文件
 ├── .babelrc                                    // 转义ES6配置文件
 ├── .gitignore                                  // git配置文件
